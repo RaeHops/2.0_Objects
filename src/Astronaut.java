@@ -28,8 +28,8 @@ public class Astronaut {
     public Astronaut(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =10;
-        dy =1;
+        dx =-10;
+        dy = 1;
         width = 60;
         height = 60;
         isAlive = true;
@@ -55,6 +55,26 @@ public class Astronaut {
         }
         if(ypos > 640){ //bounce of north wall
             dy = -dy;
+        }
+        xpos = xpos + dx;
+        ypos = ypos + dy;
+    }
+    public void wrap(){
+        if(xpos < 0){
+            xpos = 940;
+
+        }
+        if(xpos > 940){
+            xpos = 0;
+
+        }
+        if(ypos < 0){
+            ypos = 640;
+
+        }
+        if(ypos > 640){
+            ypos = 0;
+
         }
         xpos = xpos + dx;
         ypos = ypos + dy;
