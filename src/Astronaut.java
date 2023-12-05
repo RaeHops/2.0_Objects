@@ -16,6 +16,7 @@ public class Astronaut {
     public int height;
     public boolean isAlive;            //a boolean to denote if the hero is alive or dead.
     public Rectangle rec;
+    public boolean isCrashing;
 
 
     // METHOD DEFINITION SECTION
@@ -35,6 +36,7 @@ public class Astronaut {
         height = 60;
         isAlive = true;
         rec = new Rectangle(xpos, ypos, width, height);
+        isCrashing = false;
  
     } // constructor
 
@@ -50,13 +52,13 @@ public class Astronaut {
         if(xpos < 0){ //bounce of east wall
             dx = -dx;
         }
-        if(xpos > 940){ //bounce of west wall
+        if(xpos > 1000-width){ //bounce of west wall
             dx = -dx;
         }
         if(ypos < 0){ //bounce of north wall
             dy = -dy;
         }
-        if(ypos > 640){ //bounce of north wall
+        if(ypos > 700-height){ //bounce of north wall
             dy = -dy;
         }
         xpos = xpos + dx;
@@ -65,18 +67,18 @@ public class Astronaut {
     }
     public void wrap(){
         if(xpos < 0){
-            xpos = 940;
+            xpos = 1000-width;
 
         }
-        if(xpos > 940){
+        if(xpos > 1000-width){
             xpos = 0;
 
         }
         if(ypos < 0){
-            ypos = 640;
+            ypos = 700-height;
 
         }
-        if(ypos > 640){
+        if(ypos > 700-height){
             ypos = 0;
 
         }
