@@ -104,6 +104,8 @@ public class BasicGameApp implements Runnable {
 		astro2.bounce();
 		if(astro.rec.intersects(astro2.rec)){
 			System.out.println("Crash");
+			astro2.Collision();
+			astro.Collision();
 		}
 
 	}

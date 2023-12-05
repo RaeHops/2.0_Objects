@@ -84,6 +84,10 @@ public class Astronaut {
         ypos = ypos + dy;
         rec = new Rectangle(xpos, ypos, width, height);
     }
+    public void Collision(){
+        dx = -dx;
+
+    }
 }
 
 
