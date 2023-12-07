@@ -41,11 +41,14 @@ public class BasicGameApp implements Runnable {
 	public Image astroPic;
 	public Image background;
 	public Image astroPic2;
+	public Image astroPic3;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private Astronaut astro;
 	private Astronaut astro2;
+	private Astronaut astro3;
+
 
 
    // Main method definition
@@ -72,6 +75,9 @@ public class BasicGameApp implements Runnable {
 		astroPic2 = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro2 = new Astronaut((int)(Math.random())*940,(int)(Math.random()*700));
 
+		astroPic3 = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
+		astro3 = new Astronaut((int)(Math.random())*940,(int)(Math.random()*700));
+
 		background = Toolkit.getDefaultToolkit().getImage("night sky stars.jpg"); //load the picture
 
 
@@ -92,7 +98,7 @@ public class BasicGameApp implements Runnable {
 
          moveThings();  //move all the game objects
          render();  // paint the graphics
-         pause(10); // sleep for 10 ms
+         pause(15); // sleep for 10 ms
 		}
 	}
 
@@ -102,6 +108,8 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		astro.wrap();
 		astro2.bounce();
+		astro3.bounce();
+		astro3.isAlive = false;
 		if(astro.rec.intersects(astro2.rec) && astro.isCrashing == false){
 			System.out.println("Crash");
 			astro2.Collision();
@@ -109,6 +117,11 @@ public class BasicGameApp implements Runnable {
 			astro.height =astro.height+5;
 			astro.width = astro.width+5;
 			astro.isCrashing = true;
+			if(astro3.isAlive == false) {
+				astro3.isAlive = true;
+				astro3.xpos = astro.xpos;
+				astro3.ypos = astro.ypos;
+			}
 
 		}
 
@@ -168,6 +181,7 @@ public class BasicGameApp implements Runnable {
 		g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 		g.drawImage(astroPic2, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		g.drawImage(astroPic3, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
 
 		g.dispose();
 
