@@ -13,6 +13,8 @@
 
 //Graphics Libraries
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -22,7 +24,7 @@ import javax.swing.JPanel;
 //*******************************************************************************
 // Class Definition Section
 
-public class BasicGameApp implements Runnable {
+public class BasicGameApp implements Runnable, KeyListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -110,22 +112,33 @@ public class BasicGameApp implements Runnable {
 		astro2.bounce();
 		astro3.bounce();
 		astro3.isAlive = false;
-		if(astro.rec.intersects(astro2.rec) && astro.isCrashing == false){
+		if(astro.rec.intersects(astro2.rec) && astro.isCrashing == false) {
 			System.out.println("Crash");
 			astro2.Collision();
 			astro.Collision();
-			astro.height =astro.height+5;
-			astro.width = astro.width+5;
-			astro.isCrashing = true;
-			if(astro3.isAlive == false) {
-				astro3.isAlive = true;
-				astro3.xpos = astro.xpos;
-				astro3.ypos = astro.ypos;
+//			astro.height = astro.height + 5;
+//			astro.width = astro.width + 5;
+//			astro.isCrashing = true;
+//
+		}
+		if(astro.rec.intersects(astro3.rec) && astro.isCrashing == false) {
+			System.out.println("Crash");
+			astro3.Collision();
+			astro.Collision();
+//			astro.height = astro.height - 5;
+//			astro.width = astro.width - 5;
+//			astro.isCrashing = true;
 			}
 
+		if(astro2.rec.intersects(astro3.rec) && astro2.isCrashing == false) {
+			System.out.println("Crash");
+			astro3.Collision();
+			astro2.Collision();
 		}
 
-		if(astro.rec.intersects(astro2.rec) == false){
+
+
+		if(astro.rec.intersects(astro3.rec) == false){
 			astro.isCrashing = false;
 		}
 
@@ -154,6 +167,7 @@ public class BasicGameApp implements Runnable {
       canvas = new Canvas();  
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
       canvas.setIgnoreRepaint(true);
+	  canvas.addKeyListener(this);
    
       panel.add(canvas);  // adds the canvas to the panel.
    
@@ -186,5 +200,58 @@ public class BasicGameApp implements Runnable {
 		g.dispose();
 
 		bufferStrategy.show();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		System.out.println(e.getKeyCode());
+		if(e.getKeyCode() == 87){
+			System.out.println("Going Up");
+			astro.dx = 0;
+			astro.dy = -5;
+		}
+		if(e.getKeyCode() == 65){
+			System.out.println("Going Left");
+			astro.dx = -5;
+			astro.dy = 0;
+		}
+		if(e.getKeyCode() == 83){
+			System.out.println("Going Down");
+			astro.dx = 0;
+			astro.dy = 5;
+		}
+		if(e.getKeyCode() == 68){
+			System.out.println("Going Right");
+			astro.dx = 5;
+			astro.dy = 0;
+		}
+
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == 87){
+			System.out.println("Going Up");
+			astro.isNorth = false;
+		}
+		if(e.getKeyCode() == 65){
+			System.out.println("Going left");
+			astro.isEast = false;
+		}
+		if(e.getKeyCode() == 83){
+			System.out.println("Going down");
+			astro.isSouth = false;
+		}
+		if(e.getKeyCode() == 68){
+			System.out.println("Going right");
+			astro.isWest = false;
+		}
+
 	}
 }

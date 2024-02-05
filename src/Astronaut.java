@@ -17,6 +17,10 @@ public class Astronaut {
     public boolean isAlive;            //a boolean to denote if the hero is alive or dead.
     public Rectangle rec;
     public boolean isCrashing;
+    public boolean isNorth;
+    public boolean isSouth;
+    public boolean isEast;
+    public boolean isWest;
 
 
     // METHOD DEFINITION SECTION
@@ -37,6 +41,11 @@ public class Astronaut {
         isAlive = true;
         rec = new Rectangle(xpos, ypos, width, height);
         isCrashing = false;
+        isNorth = false;
+        isSouth = false;
+        isEast = false;
+        isWest = false;
+
  
     } // constructor
 
@@ -85,6 +94,38 @@ public class Astronaut {
         xpos = xpos + dx;
         ypos = ypos + dy;
         rec = new Rectangle(xpos, ypos, width, height);
+
+        if(isNorth == true){
+            dy = -5;
+        }
+        if(isNorth == false){
+            dy = 0;
+        }
+
+
+        if(isSouth == true){
+            dy = 5;
+        }
+        if(isSouth == false){
+            dy = 0;
+        }
+
+
+        if(isWest == true){
+            dy = 0;
+        }
+        if(isWest == false){
+            dy = -5;
+        }
+
+
+        if(isEast == true){
+            dy = 0;
+        }
+        if(isEast == false){
+            dy = 5;
+        }
+
     }
     public void Collision(){
         dx = -dx;
