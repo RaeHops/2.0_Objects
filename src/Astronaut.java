@@ -95,36 +95,22 @@ public class Astronaut {
         ypos = ypos + dy;
         rec = new Rectangle(xpos, ypos, width, height);
 
-        if(isNorth == true){
-            dy = -5;
-        }
-        if(isNorth == false){
+        if(isNorth == false && isSouth == false){
             dy = 0;
-        }
-
-
-        if(isSouth == true){
+        } else if(isNorth){
+            dy = -5;
+        } else{
             dy = 5;
         }
-        if(isSouth == false){
-            dy = 0;
+
+        if(isEast == false && isWest == false){
+            dx = 0;
+        } else if(isEast){
+            dx = -5;
+        } else{
+            dx = 5;
         }
 
-
-        if(isWest == true){
-            dy = 0;
-        }
-        if(isWest == false){
-            dy = -5;
-        }
-
-
-        if(isEast == true){
-            dy = 0;
-        }
-        if(isEast == false){
-            dy = 5;
-        }
 
     }
     public void Collision(){
