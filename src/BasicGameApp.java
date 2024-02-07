@@ -70,6 +70,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 	private Astronaut moon;
 	private Astronaut earth;
 	private Astronaut spacedawg;
+	public Astronaut[] astros = new Astronaut[100];
 
 
 
@@ -135,6 +136,14 @@ public class BasicGameApp implements Runnable, KeyListener {
 
 		background = Toolkit.getDefaultToolkit().getImage("night sky stars.jpg"); //load the picture
 
+		// array
+
+		for(int z = 0; z < astros.length; z++){
+			astros[z] = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		}
+
+
 		//spacedawg = new Astronaut((int)(Math.random())*940,(int)(Math.random()*700));
 	}// BasicGameApp()
 
@@ -180,6 +189,10 @@ public class BasicGameApp implements Runnable, KeyListener {
 		earth.bounce();
 
 		spacedawg.bounce();
+
+		for(int x = 0; x < astros.length; x++) {
+			astros[x].bounce();
+		}
 
 		if(astro.rec.intersects(astro2.rec) && astro.isCrashing == false) {
 			System.out.println("Crash");
@@ -282,6 +295,10 @@ public class BasicGameApp implements Runnable, KeyListener {
 		g.drawImage(earthPic, earth.xpos, earth.ypos, earth.width, earth.height, null);
 
 		g.drawImage(spacedawgPic, spacedawg.xpos, spacedawg.ypos, spacedawg.width, spacedawg.height, null);
+
+		for(int a = 0; a < astros.length; a++){
+			g.drawImage(astroPic, astros[a].xpos, astros[a].ypos, astros[a].width, astros[a].height, null);
+		}
 
 		g.dispose();
 
