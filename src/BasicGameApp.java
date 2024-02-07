@@ -44,12 +44,32 @@ public class BasicGameApp implements Runnable, KeyListener {
 	public Image background;
 	public Image astroPic2;
 	public Image astroPic3;
+	public Image asteroidPic;
+	public Image asteroidPic2;
+	public Image asteroidPic3;
+	public Image spaceshipPic;
+	public Image starPic;
+	public Image starPic2;
+	public Image starPic3;
+	public Image moonPic;
+	public Image earthPic;
+	public Image spacedawgPic;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private Astronaut astro;
 	private Astronaut astro2;
 	private Astronaut astro3;
+	private Astronaut asteroid;
+	private Astronaut asteroid2;
+	private Astronaut asteroid3;
+	private Astronaut spaceship;
+	private Astronaut shootingstar;
+	private Astronaut shootingstar2;
+	private Astronaut shootingstar3;
+	private Astronaut moon;
+	private Astronaut earth;
+	private Astronaut spacedawg;
 
 
 
@@ -80,9 +100,42 @@ public class BasicGameApp implements Runnable, KeyListener {
 		astroPic3 = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro3 = new Astronaut((int)(Math.random())*940,(int)(Math.random()*700));
 
+
+		// more
+
+		asteroidPic = Toolkit.getDefaultToolkit().getImage("Asteroid.png"); //load the picture
+		asteroid = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		asteroidPic2 = Toolkit.getDefaultToolkit().getImage("Asteroid.png"); //load the picture
+		asteroid2 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		asteroidPic3 = Toolkit.getDefaultToolkit().getImage("Asteroid.png"); //load the picture
+		asteroid3 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		spaceshipPic = Toolkit.getDefaultToolkit().getImage("Spaceship.jpg"); //load the picture
+		spaceship = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		starPic = Toolkit.getDefaultToolkit().getImage("ShootingStar.png"); //load the picture
+		shootingstar = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		starPic2 = Toolkit.getDefaultToolkit().getImage("ShootingStar.png"); //load the picture
+		shootingstar2 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		starPic3 = Toolkit.getDefaultToolkit().getImage("ShootingStar.png"); //load the picture
+		shootingstar3 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		moonPic = Toolkit.getDefaultToolkit().getImage("Moon.jpg"); //load the picture
+		moon = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		earthPic = Toolkit.getDefaultToolkit().getImage("Earth.jpg"); //load the picture
+		earth = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
+		spacedawgPic = Toolkit.getDefaultToolkit().getImage("SpaceDawg.png"); //load the picture
+		spacedawg = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+
 		background = Toolkit.getDefaultToolkit().getImage("night sky stars.jpg"); //load the picture
 
-
+		//spacedawg = new Astronaut((int)(Math.random())*940,(int)(Math.random()*700));
 	}// BasicGameApp()
 
    
@@ -108,10 +161,26 @@ public class BasicGameApp implements Runnable, KeyListener {
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
-		astro.wrap();
+		astro.WrapAndControl();
 		astro2.bounce();
 		astro3.bounce();
 		astro3.isAlive = false;
+
+		asteroid.bounce();
+		asteroid2.bounce();
+		asteroid3.bounce();
+
+		spaceship.wrap();
+
+		shootingstar.wrap();
+		shootingstar2.wrap();
+		shootingstar3.wrap();
+
+		moon.bounce();
+		earth.bounce();
+
+		spacedawg.bounce();
+
 		if(astro.rec.intersects(astro2.rec) && astro.isCrashing == false) {
 			System.out.println("Crash");
 			astro2.Collision();
@@ -196,6 +265,23 @@ public class BasicGameApp implements Runnable, KeyListener {
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 		g.drawImage(astroPic2, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
 		g.drawImage(astroPic3, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
+
+		// more
+
+		g.drawImage(asteroidPic, asteroid.xpos, asteroid.ypos, asteroid.width, asteroid.height, null);
+		g.drawImage(asteroidPic2, asteroid2.xpos, asteroid2.ypos, asteroid2.width, asteroid2.height, null);		g.drawImage(astroPic3, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
+		g.drawImage(asteroidPic3, asteroid3.xpos, asteroid3.ypos, asteroid3.width, asteroid3.height, null);
+
+		g.drawImage(spaceshipPic, spaceship.xpos, spaceship.ypos, spaceship.width, spaceship.height, null);
+
+		g.drawImage(starPic, shootingstar.xpos, shootingstar.ypos, shootingstar.width, shootingstar.height, null);
+		g.drawImage(starPic2, shootingstar2.xpos, shootingstar2.ypos, shootingstar2.width, shootingstar2.height, null);
+		g.drawImage(starPic3, shootingstar3.xpos, shootingstar3.ypos, shootingstar3.width, shootingstar3.height, null);
+
+		g.drawImage(moonPic, moon.xpos, moon.ypos, moon.width, moon.height, null);
+		g.drawImage(earthPic, earth.xpos, earth.ypos, earth.width, earth.height, null);
+
+		g.drawImage(spacedawgPic, spacedawg.xpos, spacedawg.ypos, spacedawg.width, spacedawg.height, null);
 
 		g.dispose();
 
