@@ -194,6 +194,13 @@ public class BasicGameApp implements Runnable, KeyListener {
 			astros[x].bounce();
 		}
 
+		for(int x = 0; x < astros.length; x++){
+			if(astro.rec.intersects(astros[x].rec) && astro.isCrashing == false){
+				astro.height = 1 + astro.height;
+				astro.width = 1 + astro.width;
+			}
+		}
+
 		if(astro.rec.intersects(astro2.rec) && astro.isCrashing == false) {
 			System.out.println("Crash");
 			astro2.Collision();
@@ -223,6 +230,8 @@ public class BasicGameApp implements Runnable, KeyListener {
 		if(astro.rec.intersects(astro3.rec) == false){
 			astro.isCrashing = false;
 		}
+
+
 
 	}
 	
